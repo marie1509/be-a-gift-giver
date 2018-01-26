@@ -1,0 +1,3 @@
+// .htmlはhtmlとして書き換えるという意味 セレクターの中を書き換える
+$("#item-modal").html("<%= escape_javascript(render 'form') %>");
+$("#item-modal").modal("show")

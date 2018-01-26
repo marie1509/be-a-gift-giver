@@ -1,0 +1,22 @@
+<%= link_to 'New Item', new_item_path, remote: true, class: "btn btn-lg btn-primary" %>
+<!-- remote: trueオプションをつけることで、リンクからの呼び出し先がnew.js.erbへ変わる -->
+<!-- ボタンがあるページに下記を書く 下記はモーダルを表示させたいページに書く必要がある -->
+<div id="item-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+</div>
+
+<div class="item-list">
+  <% @items.each do |item| %>
+    <div>
+      <%= item.item_name %>
+    </div>
+    <div>
+      <%= image_tag item.item_image.url if item.item_image.present? %>
+    </div>
+    <div>
+      <%= item.item_cost %>
+    </div>
+    <div>
+      <%= item.item_detail %>
+    </div>
+  <% end %>
+</div>

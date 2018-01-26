@@ -1,0 +1,24 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_with(model: @item, remote: true) do |form| %>
+      <div>
+       <!-- <%= form.label :Title %> -->
+       <%= form.text_field :item_name, placeholder: "Title", required: true  %>
+      </div>
+    </br>
+      <div>
+        <%= form.file_field :item_image %>
+      </div>
+      <div>
+        <!-- <%= form.label :Description %> -->
+        <%= form.text_area :item_detail, placeholder: "Description"  %>
+      </div>
+    </br>
+      <div>
+        <!-- <%= form.label :Cost %> -->
+        <%= form.text_field :item_cost, placeholder: "0円"%>
+      </div>
+      <%= form.submit "ADD NEW WISH ITEM" %>
+    <% end %>
+  </div>
+</div>
