@@ -1,0 +1,8 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_with(model: @icon, local: true) do |form| %>
+      <%= form.file_field :icon %>
+      <%= form.submit  %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+
+
+<div class="profile1">
+  <div class="profile1_child">
+    <% if current_user.icon.present? %>
+      <%= image_tag current_user.icon.icon.url, class:"profile_icon" %>
+    <% else %>
+      <%= image_tag ("default.jpg") , class:"profile_icon" %>
+    <% end %>
+    <p>
+    <span><%= @user.first_name %></span>
+    <span><%= @user.last_name %></span>
+    </p>
+  <!-- バースデーアイコンをここにいれる -->
+  <p>
+    <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+    <%= @user.birth_date %>
+  </p>
+  </div>
+</div>
+
+
+<!-- 以下をクリックするとファイル選択フォームが現れるようにする -->
+<!-- remote:trueでnew.js.erbへのリクエストが送信される -->
+
+
+
+<div class="profile2">
+  <div class="profile2_child">
+    <ul class="nav nav-tabs">
+    	<li class="active"><a href="#tab1" class="nav-link navbar-default" data-toggle="tab">My list</a></li>
+    	<li><a href="#tab2" class="nav-link navbar-default" data-toggle="tab">購入履歴</a></li>
+    	<li><a href="#tab3" class="nav-link navbar-default" data-toggle="tab">プロフィール編集</a></li>
+    </ul>
+
+
+    <div class="tab-content">
+    	<div class="tab-pane active" id="tab1">
+        <% @items.each do |item| %>
+        <%= render 'items/tr', item: item %>
+        <% end %>
+    	</div>
+    	<div class="tab-pane" id="tab2">
+    		<p>購入履歴</p>
+    	</div>
+    	<div class="tab-pane" id="tab3">
+        <% if current_user.icon.present? %>
+          <%= image_tag current_user.icon.icon.url, class:"profile_icon" %>
+        <% else %>
+          <%= image_tag ("default.jpg") , class:"profile_icon" %>
+        <% end %>
+
+       <p>
+        <% if !current_user.icon.present? %>
+         <%= link_to "プロフィール写真を登録する", new_icon_path, remote:true %>
+        <% else %>
+         <%= link_to "プロフィール写真を変更する", edit_icon_path(@user.id), remote:true %>
+        <% end %>
+       </p>
+        <div id="icon-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        </div>
+
+    	</div>
+    </div>
+  </div>
+</div>

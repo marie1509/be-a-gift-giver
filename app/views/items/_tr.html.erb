@@ -1,13 +1,51 @@
+<!-- ユーザーアイコンとユーザーネーム-->
+<div class="hello">
+ <% if !item.user.icon.present? %>
+   <%= image_tag ("default.jpg") , class:"icon" %>
+ <% else %>
+   <%= image_tag item.user.icon.icon.url, class:"icon"%>
+ <% end %>
+ <span>
+   <%= item.user.first_name %>
+ </span>
+</div>
 
-  <div>
-    <%= item.item_name %>
-  </div>
-  <div>
-    <%= image_tag item.item_image.url if item.item_image.present? %>
-  </div>
-  <div>
-    <%= item.item_cost %>
-  </div>
-  <div>
-    <%= item.item_detail %>
-  </div>
+<!-- アイテム名 と アイテムコスト-->
+<div>
+  <%= item.item_name %>
+  <% if item.item_cost.present? %>
+  <span>
+  <%= item.item_cost %>円
+  </span>
+  <% end %>
+</div>
+
+<!-- アイテム画像 -->
+<div>
+  <%= image_tag item.item_image.url, class:"item_image" %>
+</div>
+
+<!-- 編集と削除 -->
+<% if current_user == item.user %>
+<div>
+  <%= link_to edit_item_path(item.id), remote: true do %>
+    <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+  <% end %>
+
+  <%= link_to item_path(item.id),  data: { confirm: "Are you sure?"}, method: :delete do  %>
+      <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+  <% end %>
+  
+<% else %>
+  <!-- WillbuyとDidbuy -->
+<%= render 'willbuys/willbuy', item: item, willbuy: @willbuy %>
+<% end %>
+</div>
+
+
+
+
+<!-- アイテム詳細 -->
+<div>
+  <%= item.item_detail %>
+</div>

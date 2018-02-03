@@ -1,2 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+// 以下はapplication.jsのrequire_treeと同じ
+// 以下を書かないとstylesheets以下のcssがbootstrap4では読み込まれない
+@import "/*"
