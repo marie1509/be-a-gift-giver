@@ -1,0 +1,77 @@
+// Place all the styles related to the letsbuys controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.whole-purchase {
+  text-align: center;
+  margin-top: 3%;
+  margin-bottom: 3%;
+
+}
+
+div.whole-purchase img {
+  width: 40%;
+  height: 40%;
+}
+
+div.whole-purchase ul.list-group.purchase {
+  display: inline-block;
+  width: 70%;
+}
+
+// テーブルのCSSここから
+input.pay_amount {
+  border-radius: 5%;
+  width: 80%;
+}
+
+div.table-parent {
+  padding-top: 3%;
+  padding-bottom: 20%;
+}
+
+// div.table-parent table.letsbuy-table {
+//     position: absolute;
+//     top: 100%;
+//     left: 50%;
+//     -ms-transform: translate(-50%,-50%);
+//     -webkit-transform: translate(-50%,-50%);
+//     transform: translate(-50%,-50%);
+// }
+
+img.letsbuy-image {
+  height: 100px;
+  width: 100px;
+}
+
+table.letsbuy-table {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.letsbuy-table tr {
+  height: 5rem;
+}
+
+.letsbuy-table th {
+  width: 35%;
+  padding-left: 1rem;
+  color: gray;
+  border: solid 1px #B1B1B1;
+}
+
+.letsbuy-table td {
+  width: 65%;
+  padding-left: 1rem;
+  margin-right: 3rem;
+  border: solid 1px #B1B1B1;
+}
+
+
+.letsbuy-table tr:last-child th {
+  text-align: center;
+  padding-right: 1rem;
+  font-size: 2rem;
+  height: 80px;
+}

@@ -10,3 +10,33 @@
 .profile2 {
   text-align: center;
 }
+
+div#tab2.tab-pane {
+  text-align: center;
+}
+
+div#tab2.tab-pane ul {
+  display: inline-block;
+  margin: 20px;
+  width: 30%;
+  height: 50%;
+}
+
+
+div#tab2.tab-pane ul li{
+  color: gray;
+}
+
+
+div#tab3.tab-pane {
+  text-align: center;
+}
+
+div#tab3.tab-pane form {
+  display: inline-block;
+}
+
+.purchase_image {
+  height: 30%;
+  width: 30%;
+}

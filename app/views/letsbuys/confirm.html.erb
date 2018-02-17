@@ -1,0 +1,118 @@
+<!-- <div class="whole-purchase">
+  <ul class="list-group purchase">
+
+    <li class="list-group-item">
+      <h2>購入確認画面</h2>
+    </li>
+
+    <li class="list-group-item">
+      <h3><%= @item.user.first_name %>さんへ<%= @item.item_name %></h3>
+    </li>
+
+
+    <li class="list-group-item">
+      <%= image_tag @item.item_image.url, :size => "250" %>
+      <p><%= @item.item_detail %></p>
+    </li>
+
+    <li class="list-group-item">
+      <h4>アイテム金額: <%= @item.item_cost %>円</h4>
+    </li>
+
+    <li class="list-group-item">
+      <h4>残額: <%= @item.item_cost-sum_amount(@item.id) %> 円</h4>
+    </li>
+
+  <%= form_with(model: @letsbuy, local: true) do |f| %>
+    <%= f.hidden_field :item_id, :value => @item.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :pay_amount, :value => @letsbuy.pay_amount %>
+    <li class="list-group-item">
+     <p>購入金額</p>
+      <p><%= @letsbuy.pay_amount %>円</p>
+     <%= f.submit "購入" %>
+     <% end %>
+
+  <%= form_with(model: @letsbuy, url: new_letsbuy_path, local: true, method: 'get') do |f| %>
+    <%= f.hidden_field :item_id, :value => @item.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :pay_amount, :value => @letsbuy.pay_amount %>
+  <%= f.submit "戻る", name: 'back' %>
+  </li>
+  <% end %>
+
+</ul>
+</div> -->
+
+<div class="table-parent">
+<table class="letsbuy-table">
+  <thead>
+    <tr>
+      <th colspan="2">
+        購入確認画面
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+     <tr>
+       <th>アイテムユーザー</th>
+       <td><%= @item.user.first_name %>さん</td>
+     </tr>
+
+     <tr>
+       <th>アイテム名</th>
+       <td><%= @item.item_name %></td>
+     </tr>
+
+     <tr>
+       <th>アイテム画像</th>
+       <td><%= image_tag @item.item_image.url, class: "letsbuy-image"  %></td>
+     </tr>
+
+     <% if @item.item_detail.present? %>
+     <tr>
+       <th>アイテム詳細</th>
+       <td><%= @item.item_detail %></td>
+     </tr>
+     <% end %>
+
+     <tr>
+       <th>アイテム金額</th>
+       <td><%= @item.item_cost %> 円</td>
+     </tr>
+
+     <tr>
+       <th>現在の残額</th>
+       <td><%= @item.item_cost - sum_amount(@item.id) %> 円</td>
+     </tr>
+
+     <%= form_with(model: @letsbuy, local: true) do |f| %>
+       <%= f.hidden_field :item_id, :value => @item.id %>
+       <%= f.hidden_field :user_id, :value => current_user.id %>
+       <%= f.hidden_field :pay_amount, :value => @letsbuy.pay_amount %>
+
+     <tr>
+       <th>購入金額</th>
+       <td><%= @letsbuy.pay_amount %> 円</td>
+     </tr>
+
+     <tr>
+       <th colspan="2">
+         <%= f.submit "購入", class: "btn btn-default" %>
+         <% end %>
+
+         <%= form_with(model: @letsbuy, url: new_letsbuy_path, local: true, method: 'get') do |f| %>
+           <%= f.hidden_field :item_id, :value => @item.id %>
+           <%= f.hidden_field :user_id, :value => current_user.id %>
+           <%= f.hidden_field :pay_amount, :value => @letsbuy.pay_amount %>
+         <%= f.submit "戻る", name: 'back', class: "btn btn-default" %>
+         <% end %>
+       </th>
+     </tr>
+
+
+
+  </tbody>
+</table>
+<div>

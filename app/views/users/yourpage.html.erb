@@ -1,0 +1,35 @@
+<div class="profile1">
+  <div class="profile1_child">
+    <% if @user.icon.present? %>
+      <%= image_tag @user.icon.icon.url, class:"profile_icon" %>
+    <% else %>
+      <%= image_tag ("default.jpg") , class:"profile_icon" %>
+    <% end %>
+
+    <p>
+    <span><%= @user.first_name %></span>
+    <span><%= @user.last_name %></span>
+    </p>
+  <p>
+    <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+    <%= @user.birth_date %>
+  </p>
+  </div>
+</div>
+
+<div class="profile2">
+  <div class="profile2_child">
+    <ul class="nav nav-tabs">
+      <li><a href="#tab1" class="nav-link navbar-default" data-toggle="tab"><%= @user.first_name %>'s list</a></li>
+    </ul>
+
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab1">
+        <% @items.each do |item| %>
+        <%= render 'items/tr', item: item %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

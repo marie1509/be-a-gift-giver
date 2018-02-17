@@ -1,0 +1,17 @@
+<% if item.didbuy_user(current_user.id) %>
+  <%= link_to item_didbuy_path(item_id: item.id, id: item.didbuy_user(current_user.id).id), method: :delete, id: "didbuy-button", remote: true do %>
+<i class="fas fa-thumbs-up fa-lg"></i>
+<% end %>
+
+  <%= didbuy_count %>
+
+
+<% else %>
+  <%= link_to item_didbuys_path(item), id: "didbuy-button",
+   method: :post, remote: true do %>
+<i class="far fa-thumbs-up fa-lg"></i>
+<% end %>
+
+  <%= didbuy_count %>
+
+<% end %>

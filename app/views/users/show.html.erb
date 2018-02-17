@@ -1,66 +1,145 @@
 
-
-<div class="profile1">
-  <div class="profile1_child">
-    <% if current_user.icon.present? %>
-      <%= image_tag current_user.icon.icon.url, class:"profile_icon" %>
-    <% else %>
-      <%= image_tag ("default.jpg") , class:"profile_icon" %>
-    <% end %>
+<!-- マイページのコンテンツここから -->
+  <div class="profile1">
+    <div class="profile1_child">
+      <% if current_user.icon.present? %>
+        <%= image_tag current_user.icon.icon.url, class:"profile_icon" %>
+      <% else %>
+        <%= image_tag ("default.jpg") , class:"profile_icon" %>
+      <% end %>
+      <p>
+      <span><%= @user.first_name %></span>
+      <span><%= @user.last_name %></span>
+      </p>
+    <!-- バースデーアイコンをここにいれる -->
     <p>
-    <span><%= @user.first_name %></span>
-    <span><%= @user.last_name %></span>
+      <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+      <%= @user.birth_date %>
     </p>
-  <!-- バースデーアイコンをここにいれる -->
-  <p>
-    <i class="fa fa-birthday-cake" aria-hidden="true"></i>
-    <%= @user.birth_date %>
-  </p>
-  </div>
-</div>
-
-
-<!-- 以下をクリックするとファイル選択フォームが現れるようにする -->
-<!-- remote:trueでnew.js.erbへのリクエストが送信される -->
-
-
-
-<div class="profile2">
-  <div class="profile2_child">
-    <ul class="nav nav-tabs">
-    	<li class="active"><a href="#tab1" class="nav-link navbar-default" data-toggle="tab">My list</a></li>
-    	<li><a href="#tab2" class="nav-link navbar-default" data-toggle="tab">購入履歴</a></li>
-    	<li><a href="#tab3" class="nav-link navbar-default" data-toggle="tab">プロフィール編集</a></li>
-    </ul>
-
-
-    <div class="tab-content">
-    	<div class="tab-pane active" id="tab1">
-        <% @items.each do |item| %>
-        <%= render 'items/tr', item: item %>
-        <% end %>
-    	</div>
-    	<div class="tab-pane" id="tab2">
-    		<p>購入履歴</p>
-    	</div>
-    	<div class="tab-pane" id="tab3">
-        <% if current_user.icon.present? %>
-          <%= image_tag current_user.icon.icon.url, class:"profile_icon" %>
-        <% else %>
-          <%= image_tag ("default.jpg") , class:"profile_icon" %>
-        <% end %>
-
-       <p>
-        <% if !current_user.icon.present? %>
-         <%= link_to "プロフィール写真を登録する", new_icon_path, remote:true %>
-        <% else %>
-         <%= link_to "プロフィール写真を変更する", edit_icon_path(@user.id), remote:true %>
-        <% end %>
-       </p>
-        <div id="icon-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        </div>
-
-    	</div>
     </div>
   </div>
-</div>
+
+
+  <!-- 以下をクリックするとファイル選択フォームが現れるようにする -->
+  <!-- remote:trueでnew.js.erbへのリクエストが送信される -->
+
+
+
+  <div class="profile2">
+    <div class="profile2_child">
+      <ul class="nav nav-tabs">
+      	<li class="active"><a href="#tab1" class="nav-link navbar-default" data-toggle="tab">My list</a></li>
+      	<li><a href="#tab2" class="nav-link navbar-default" data-toggle="tab">購入履歴</a></li>
+      	<li><a href="#tab3" class="nav-link navbar-default" data-toggle="tab">プロフィール編集</a></li>
+      </ul>
+
+
+      <div class="tab-content">
+      	<div class="tab-pane active" id="tab1">
+          <% @items.each do |item| %>
+          <%= render 'items/tr', item: item %>
+          <% end %>
+      	</div>
+
+          <!-- 購入履歴 -->
+      	<div class="tab-pane" id="tab2">
+          <% @letsbuys.each do |letsbuy| %>
+          <ul class="list-group">
+
+
+          <% @id = letsbuy.item_id %>
+          <% @item = Item.find(@id) %>
+          <% @letsbuy_user = User.find(@item.user_id) %>
+          <li class="list-group-item">
+            <p><%= @letsbuy_user.first_name %> さんへ
+            <%= @item.item_name %></p>
+          </li>
+
+          <li class="list-group-item">
+            <%= image_tag @item.item_image.url, class:"purchase_image" %>
+          </li>
+
+          <li class="list-group-item">
+            <p>購入金額: <%= letsbuy.pay_amount %>円</p>
+          </li>
+
+          <li class="list-group-item">
+            <p>購入日時: <%= letsbuy.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+          </li>
+
+          <li class="list-group-item">
+            <p>ご購入ありがとうございました <i class="fas fa-gift"></i></p>
+            <p>Thank you for your kindness!</p>
+          </li>
+          </ul>
+         <% end %>
+      	</div>
+
+
+
+        <!-- プロフィール編集 -->
+      	<div class="tab-pane" id="tab3">
+          <% if current_user.icon.present? %>
+            <%= image_tag current_user.icon.icon.url, class:"edit_icon" %>
+          <% else %>
+            <%= image_tag ("default.jpg") , class:"edit_icon" %>
+          <% end %>
+
+         <p>
+          <% if !current_user.icon.present? %>
+           <%= link_to "プロフィール写真を登録する", new_icon_path, remote:true %>
+          <% else %>
+           <%= link_to "プロフィール写真を変更する", edit_icon_path(@user.id), remote:true %>
+          <% end %>
+         </p>
+          <div id="icon-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          </div>
+
+
+
+          <div>
+           <%= form_with(model: @user, local: true ) do |form| %>
+             <form>
+               <div class="form-group row">
+                 <label for="editFirstName" class="col-md-4 col-form-label">First Name</label>
+                 <div class="col-md-8">
+                   <%= form.text_field :first_name, class: "form-control", id: "editFirstName"%>
+                 </div>
+               </div>
+
+               <div class="form-group row">
+                 <label for="editLastName" class="col-md-4 col-form-label">Last Name</label>
+                 <div class="col-md-8">
+                   <%= form.text_field :last_name, class: "form-control", id: "editLastName"%>
+                 </div>
+               </div>
+
+               <div class="form-group row">
+                 <label for="editEmail" class="col-md-4 col-form-label">Email Address</label>
+                 <div class="col-md-8">
+                   <%= form.email_field :user_email, class: "form-control", id: "editEmail"%>
+                 </div>
+               </div>
+
+               <div class="form-group row">
+                 <label for="editBirthday" class="col-md-4 col-form-label">Birthday</label>
+                 <div class="col-md-8">
+                   <%= form.date_select :birth_date, class: "form-control", id: "editBirthday", use_month_numbers: true, start_year: 1930, date_separator: '/' %>
+                 </div>
+               </div>
+
+               <div class="form-group row">
+                <div class="col-sm-12">
+                 <%= form.submit "Edit my account", class: "btn btn-default" %>
+                </div>
+               </div>
+             </form>
+           <% end %>
+         </div>
+
+
+      	</div>
+      </div>
+    </div>
+  </div>
+<!-- マイページのコンテンツここまで -->

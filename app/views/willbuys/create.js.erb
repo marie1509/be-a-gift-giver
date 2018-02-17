@@ -1,1 +1,2 @@
-$("#like-button").html("<%= j(render partial: 'willbuy', locals: { willbuys: @willbuys, willbuy: @willbuy}) %>")
+
+$('#willbuy_content[data-willbuy-id="' + <%= @item.id %> + '"]').html("<%= j(render partial: 'willbuy', locals: { item: @item,  willbuy_count: @willbuy_count  }) %>")

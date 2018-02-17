@@ -1,0 +1,66 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_with(model: @item, remote: true, class:"add_item") do |form| %>
+     <form>
+     <div class="panel-heading">
+       <h3 class="panel-title">Edit Gift</h3>
+     </div>
+
+    <div class="panel-body">
+
+     <!-- <div class="form-group row">
+       <label for="InputItemImage" class="col-md-5 col-form-label">アイテム写真</label>
+        <div class="col-md-7">
+       <%= form.file_field :item_image, type: "file" %>
+       </div>
+     </div> -->
+
+
+   <div class="input-group" style="padding-bottom:15px">
+       <label class="input-group-btn">
+           <span class="btn btn-primary">
+             アイテム写真
+                <%= form.file_field :item_image, type: "file", style: "display:none;" %>
+           </span>
+       </label>
+       <input type="text" class="form-control" readonly="" style="background-color:white">
+   </div>
+
+      <div class="form-group row">
+        <label for="InputItemName" class="col-md-5 col-form-label">アイテム名</label>
+         <div class="col-md-7">
+         <%= form.text_field :item_name, class: "form-control", placeholder: "Title", required: true  %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="InputItemCost" class="col-md-5 col-form-label">値段</label>
+        <div class="col-md-7">
+          <%= form.number_field :item_cost, class: "form-control", placeholder: "0円"%>
+       </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="InputItemDetail" class="col-md-5 col-form-label">詳細</label>
+        <div class="col-md-7">
+          <%= form.text_area :item_detail, class: "form-control", placeholder: "Description"  %>
+        </div>
+      </div>
+
+      <%= form.submit "Edit gift", class: "btn btn-default" %>
+     </form>
+    <% end %>
+  </div>
+  </div>
+</div>
+
+
+<script>
+$(document).on('change', ':file', function() {
+    var input = $(this),
+    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.parent().parent().next(':text').val(label);
+});
+</script>

@@ -6,10 +6,29 @@ a, li {
   color: rgba(238, 88, 133, 0.64);
 }
 
-
+ul li {
+  color: gray;
+}
 
 div.container-fluid {
   background-color: white;
-
   border-color: #f7cadd;
+}
+
+div.modal-content{
+  text-align: center;
+}
+
+
+input.btn.btn-default {
+  background-color: rgba(238, 88, 133, 0.64);
+  color: white;
+  border:  rgba(238, 88, 133, 0.64);
+  display: inline-block;
+}
+
+button.btn.btn-default {
+  background-color: rgba(238, 88, 133, 0.64);
+  color: white;
+  border: 1px solid rgba(238, 88, 133, 0.64);
 }

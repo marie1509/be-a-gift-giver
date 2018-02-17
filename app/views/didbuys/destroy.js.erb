@@ -1,0 +1,1 @@
+$('div#didbuy_content[data-didbuy-id="' + <%= @item.id %> + '"]').html("<%= j(render partial: 'didbuy', locals: { item: @item,  didbuy_count: @didbuy_count  }) %>")

@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
   def index
     # リストを作成された順に表示
     @items = Item.all.order(created_at: :desc)
-
+    
   end
 
   def edit

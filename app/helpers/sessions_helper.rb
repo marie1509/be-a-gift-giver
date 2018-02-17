@@ -9,7 +9,7 @@ module SessionsHelper
 
   def force_login
     if !logged_in?
-      redirect_to new_session_path, notice: "ログインしてください"
+      redirect_to sessions_path
     end
   end
 end

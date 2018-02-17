@@ -1,51 +1,79 @@
-<!-- ユーザーアイコンとユーザーネーム-->
-<div class="hello">
- <% if !item.user.icon.present? %>
-   <%= image_tag ("default.jpg") , class:"icon" %>
- <% else %>
-   <%= image_tag item.user.icon.icon.url, class:"icon"%>
- <% end %>
- <span>
-   <%= item.user.first_name %>
- </span>
-</div>
+<div class="each-item">
+  <!-- ユーザーアイコンとユーザーネーム-->
+  <ul class="list-group">
+  <li class="list-group-item test">
+   <% if !item.user.icon.present? %>
+     <%= link_to user_path(id: item.user_id, yourpage: "test") do %>
+       <%= image_tag ("default.jpg") , class:"icon" %>
+     <% end %>
+   <% else %>
+     <%= link_to user_path(id: item.user_id, yourpage: "test") do %>
+       <%= image_tag item.user.icon.icon.url, class:"icon"%>
+     <% end %>
+   <% end %>
 
-<!-- アイテム名 と アイテムコスト-->
-<div>
-  <%= item.item_name %>
-  <% if item.item_cost.present? %>
-  <span>
-  <%= item.item_cost %>円
-  </span>
+   <span class="name">
+     <%= item.user.first_name %>
+   </span>
+   <span class="time">
+     <%= time_ago_in_words(item.created_at) %> ago
+   </span>
+  </li>
+
+  <!-- アイテム名 と アイテムコスト-->
+  <li class="list-group-item clear">
+    <h3>
+    <%= item.item_name %>
+
+    <% if item.item_cost.present? %>
+    <%= item.item_cost %>円
+    <% end %></h3>
+  </li>
+
+  <!-- アイテム画像 -->
+  <li class="list-group-item">
+    <%= image_tag item.item_image.url, class:"item_image" %>
+  </li>
+
+  <li class="list-group-item float">
+  <!-- 編集と削除 -->
+  <% if current_user == item.user %>
+    <%= link_to edit_item_path(item.id), remote: true do %>
+      <!-- <i class="fa fa-pencil fa-2x" aria-hidden="true"></i> -->
+      <i class="far fa-edit fa-lg"></i>
+    <% end %>
+    <%= link_to item_path(item.id),  data: { confirm: "Are you sure?"}, method: :delete do  %>
+        <!-- <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i> -->
+        <i class="far fa-trash-alt fa-lg"></i>
+    <% end %>
+  <% else %>
+
+    <!-- Willbuy Letsbuy Didbuy -->
+
+      <div id="willbuy_content" data-willbuy-id="<%= item.id %>">
+        <% willbuy_count = item.willbuy_count %>
+        <%= render 'willbuys/willbuy', item: item, willbuy: @willbuy, willbuy_count: willbuy_count %>
+      </div>
+
+      <div id="letsbuy_content">
+        <%= link_to new_letsbuy_path(id: item.id) do %>
+          <i class="far fa-handshake fa-lg"></i>
+        <% end %>
+      </div>
+
+      <div id="didbuy_content" data-didbuy-id="<%= item.id %>">
+        <% didbuy_count = item.didbuy_count %>
+        <%= render 'didbuys/didbuy', item: item, didbuy: @didbuy, didbuy_count: didbuy_count %>
+      </div>
+
   <% end %>
-</div>
-
-<!-- アイテム画像 -->
-<div>
-  <%= image_tag item.item_image.url, class:"item_image" %>
-</div>
-
-<!-- 編集と削除 -->
-<% if current_user == item.user %>
-<div>
-  <%= link_to edit_item_path(item.id), remote: true do %>
-    <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-  <% end %>
-
-  <%= link_to item_path(item.id),  data: { confirm: "Are you sure?"}, method: :delete do  %>
-      <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
-  <% end %>
-  
-<% else %>
-  <!-- WillbuyとDidbuy -->
-<%= render 'willbuys/willbuy', item: item, willbuy: @willbuy %>
-<% end %>
-</div>
-
-
-
+  </li>
 
 <!-- アイテム詳細 -->
-<div>
-  <%= item.item_detail %>
+  <% if item.item_detail.present? %>
+  <li class="list-group-item">
+    <%= item.item_detail %>
+  </li>
+  <% end %>
+</ul>
 </div>

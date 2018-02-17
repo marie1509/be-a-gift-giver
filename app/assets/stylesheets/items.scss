@@ -1,9 +1,24 @@
 // Place all the styles related to the items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.panel-heading {
+  background-color: rgba(238, 88, 133, 0.64);
+  color: white;
+  margin: 10px;
+  text-align: center;
+}
+
+
 .item_image {
   width: 50%;
   height: 50%;
+}
+
+
+img.icon:hover  {
+  opacity: .5;
+  text-decoration: none;
 }
 
 img.icon {
@@ -12,6 +27,64 @@ img.icon {
   height: 50px;
 }
 
-div.hello {
-    text-align: left;
+// アイテム一覧をセンタライズする
+div.item-lists {
+  text-align: center;
+}
+
+div.each-item {
+  margin-top: 5%;
+  width: 50%;
+  display: inline-block;
+}
+
+form.add_item {
+  margin: 10px;
+}
+
+li.list-group-item img.icon {
+  float: left;
+}
+
+li.list-group-item span.name {
+  float: left;
+  padding: 10px;
+}
+
+li.list-group-item span.time {
+  float: right;
+  padding: 10px;
+}
+
+li.list-group-item.test {
+  min-height: 70px;
+}
+//
+// li.list-group-item.clear {
+//   clear: both;
+// }
+
+span.btn.btn-primary {
+  background-color: rgba(238, 88, 133, 0.64);
+  border-color: rgba(238, 88, 133, 0.64);
+}
+
+div#willbuy_content {
+  width: 33%;
+}
+
+div#letsbuy_content {
+  width: 33%;
+}
+
+div#didbuy_content {
+  width: 33%;
+}
+
+li.list-group-item.float div {
+  float: left;
+}
+
+li.list-group-item.float {
+    height: 50px;
 }

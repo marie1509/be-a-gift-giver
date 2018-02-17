@@ -1,18 +1,12 @@
-<% if logged_in? %>
-
   <% if item.willbuy_user(current_user.id) %>
-     <%= button_to item_willbuy_path(willbuy, item_id: item.id), method: :delete, id: "willbuy-button", remote: true do %>
-     <i class="far fa-hand-paper"></i>
+     <%= link_to item_willbuy_path(item_id: item.id, id: item.willbuy_user(current_user.id).id), method: :delete, id: "willbuy-button", remote: true do %>
+       <i class="fas fa-hand-paper fa-lg"></i>
      <% end %>
-     <span>
-       <!-- <%= item.willbuy_count %> -->
-     </span>
+       <%= willbuy_count %>
+
   <% else %>
-    <%= button_to "Willbuy",  item_willbuys_path(item), id: "willbuy-button", remote: true %>
-    <!-- ここにアイコンを追加 Willbuyを消してdo end 追加-->
-    <span>
-      <!-- <%= item.willbuy_count %> -->
-    </span>
+    <%= link_to item_willbuys_path(item), id: "willbuy-button", method: :post, remote: true do %>
+      <i class="far fa-hand-paper fa-lg"></i>
+     <% end %>
+      <%= willbuy_count %>
   <% end %>
-  <!-- ここにサインインしていないときの処理 -->
-<% end %>
