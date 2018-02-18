@@ -75,10 +75,12 @@ div#willbuy_content {
 
 div#letsbuy_content {
   width: 33%;
+
 }
 
 div#didbuy_content {
   width: 33%;
+
 }
 
 li.list-group-item.float div {
@@ -86,5 +88,18 @@ li.list-group-item.float div {
 }
 
 li.list-group-item.float {
-    height: 50px;
+    height: 60px;
+}
+
+
+div#letsbuy_content p {
+  color: rgba(238, 88, 133, 0.64);
+}
+
+div#willbuy_content p {
+  color: rgba(238, 88, 133, 0.64);
+}
+
+div#didbuy_content p {
+  color: rgba(238, 88, 133, 0.64);
 }
