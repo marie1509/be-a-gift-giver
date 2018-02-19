@@ -15,6 +15,7 @@ class ItemsController < ApplicationController
 
     @item = Item.new(item_params)
     @item.user_id = current_user.id
+
     respond_to do |format|
       if @item.save
         format.html { redirect_to items_path }
@@ -29,7 +30,7 @@ class ItemsController < ApplicationController
   def index
     # リストを作成された順に表示
     @items = Item.all.order(created_at: :desc)
-    
+
   end
 
   def edit

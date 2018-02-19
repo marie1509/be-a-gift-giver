@@ -16,10 +16,11 @@ class LetsbuysController < ApplicationController
 
   def create
     @letsbuy = Letsbuy.new(letsbuy_params)
+
     if @letsbuy.save
       render 'create'
     else
-      render 'confirm'
+      render 'new'
     end
   end
 
@@ -28,4 +29,6 @@ class LetsbuysController < ApplicationController
     def letsbuy_params
       params.require(:letsbuy).permit(:item_id, :user_id, :pay_amount)
     end
+
+
 end

@@ -1,3 +1,4 @@
+
 <div class="modal-dialog">
   <div class="modal-content">
     <%= form_with(model: @item, remote: true, class:"add_item") do |form| %>
@@ -8,13 +9,6 @@
 
     <div class="panel-body">
 
-     <!-- <div class="form-group row">
-       <label for="InputItemImage" class="col-md-5 col-form-label">アイテム写真</label>
-        <div class="col-md-7">
-       <%= form.file_field :item_image, type: "file" %>
-       </div>
-     </div> -->
-
 
    <div class="input-group" style="padding-bottom:15px">
        <label class="input-group-btn">
@@ -23,7 +17,7 @@
                 <%= form.file_field :item_image, type: "file", style: "display:none;" %>
            </span>
        </label>
-       <input type="text" class="form-control" readonly="" style="background-color:white">
+       <input type="text" class="form-control" readonly="" style="background-color:white" required>
    </div>
 
       <div class="form-group row">
@@ -36,7 +30,7 @@
       <div class="form-group row">
         <label for="InputItemCost" class="col-md-5 col-form-label">値段</label>
         <div class="col-md-7">
-          <%= form.number_field :item_cost, class: "form-control", placeholder: "1000", required: true%>
+          <%= form.number_field :item_cost, class: "form-control", placeholder: "1000", required: true, min:0 %>
        </div>
       </div>
 

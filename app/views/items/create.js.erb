@@ -1,6 +1,6 @@
 <% if @status == 'success' %>
 $(".item-list").append("<%= j(render("tr", item:@item)) %>");
 <%  elsif @status == 'fail' %>
-alert('error!');
+alert('アイテム写真を選択してください');
 <% end %>
 $("#item-modal").modal("hide");

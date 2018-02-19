@@ -51,7 +51,7 @@
        <th>購入金額</th>
        <td>
 
-       <%= f.number_field :pay_amount, class:"pay_amount", placeholder: "購入金額を入力してください", required: true %> 円
+       <%= f.number_field :pay_amount, class:"pay_amount", placeholder: "購入金額を入力してください", required: true, min:1, max: @item.item_cost - sum_amount(@item.id) %> 円
      </td>
      </tr>
 
