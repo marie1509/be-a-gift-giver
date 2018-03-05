@@ -8,9 +8,6 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width">
-     <!-- <script src="https://use.fontawesome.com/f9957ea8dd.js"></script> -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
-    <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> -->
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   </head>
 
@@ -26,7 +23,6 @@
           <span class="icon-bar"></span>
          </button>
          <%= link_to items_path do %>
-           <!-- <i class="fa fa-gift fa-2x"></i> -->
            <i class="fas fa-gift fa-2x"></i>
          <% end %>
          <a class="navbar-brand">Be a gift giver</a>
@@ -48,9 +44,6 @@
        </div>
       </nav>
     </header>
-    <!-- <% flash.each do |key, value| %>
-    <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %> -->
     <%= yield %>
   </body>
 </html>
