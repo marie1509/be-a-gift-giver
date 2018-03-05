@@ -15,8 +15,6 @@ class IconsController < ApplicationController
   end
 
   def edit
-    # パラメーターとしてuser_idが送られてくる
-
     @icon = Icon.find_by(user_id:params[:id])
 
   end
