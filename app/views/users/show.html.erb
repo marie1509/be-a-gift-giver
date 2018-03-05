@@ -1,5 +1,3 @@
-
-<!-- マイページのコンテンツここから -->
   <div class="profile1">
     <div class="profile1_child">
       <% if current_user.icon.present? %>
@@ -18,7 +16,6 @@
     </div>
   </div>
 
-
   <div class="profile2">
     <div class="profile2_child">
       <ul class="nav nav-tabs">
@@ -27,7 +24,6 @@
       	<li><a href="#tab3" class="nav-link navbar-default" data-toggle="tab">プロフィール編集</a></li>
       </ul>
 
-
       <div class="tab-content">
       	<div class="tab-pane active" id="tab1">
           <% @items.each do |item| %>
@@ -35,15 +31,14 @@
           <% end %>
       	</div>
 
-          <!-- 購入履歴 -->
+        <!-- 購入履歴 -->
       	<div class="tab-pane" id="tab2">
           <% @letsbuys.each do |letsbuy| %>
           <ul class="list-group">
-
-
           <% @id = letsbuy.item_id %>
           <% @item = Item.find(@id) %>
           <% @letsbuy_user = User.find(@item.user_id) %>
+            
           <li class="list-group-item">
             <p><%= @letsbuy_user.first_name %> さんへ
             <%= @item.item_name %></p>
@@ -69,8 +64,6 @@
          <% end %>
       	</div>
 
-
-
         <!-- プロフィール編集 -->
       	<div class="tab-pane" id="tab3">
           <% if current_user.icon.present? %>
@@ -88,8 +81,6 @@
          </p>
           <div id="icon-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
           </div>
-
-
 
           <div>
            <%= form_with(model: @user, local: true ) do |form| %>
@@ -130,10 +121,8 @@
              </form>
            <% end %>
          </div>
-
-
       	</div>
       </div>
     </div>
   </div>
-<!-- マイページのコンテンツここまで -->
+
