@@ -4,8 +4,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-
-    # 下記の記述でどんなリクエストでもjsに飛ぶ
     respond_to do |format|
       format.js
     end
@@ -34,12 +32,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    # まず編集したいアイテムのidを取得する
+    # 編集したいアイテムのidを取得
 
   end
 
   def update
-    # まず編集したいアイテムのidを取得する
+    # 編集したいアイテムのidを取得
 
      @item.update(item_params)
      redirect_to items_path
@@ -49,7 +47,7 @@ class ItemsController < ApplicationController
   def destroy
 
     @item.destroy
-    # 一覧画面で削除したなら一覧画面に、マイページで削除したならマイページに戻るようにしたい
+   
     redirect_to items_path
   end
 
